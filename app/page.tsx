@@ -8,9 +8,10 @@ import { useAppStore } from '@/lib/store';
 import { Hero } from '@/components/Hero';
 import { ReviewsSection } from '@/components/ReviewsSection';
 import { OfficialPackages } from '@/components/OfficialPackages';
+import { GallerySection } from '@/components/GallerySection';
 
 export default function HomePage() {
-  const { lang, siteConfig, reviews } = useAppStore();
+  const { lang, siteConfig, reviews, gallery } = useAppStore();
 
   const modules = [
     {
@@ -89,7 +90,7 @@ export default function HomePage() {
         siteConfig={siteConfig}
       />
 
-      <OfficialPackages lang={lang} />
+      <OfficialPackages lang={lang} siteConfig={siteConfig} />
 
       {/* Main Modules Directory: Dedicated Pages Overview */}
       <section className="py-20 bg-[#090f17] border-t border-[#c5a059]/20 relative">
@@ -218,6 +219,9 @@ export default function HomePage() {
 
       {/* Guest Reviews & Accreditations */}
       <ReviewsSection lang={lang} reviews={reviews} />
+
+      {/* Real visitor gallery placed on the homepage before the final contact/booking block. */}
+      <GallerySection lang={lang} gallery={gallery} />
 
       {/* Direct Quick Booking Callout Section */}
       <section className="py-16 bg-gradient-to-b from-[#090e15] to-[#070b10] border-t border-[#c5a059]/20 text-center">
