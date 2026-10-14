@@ -7,6 +7,22 @@ import { Phone, Mail, MessageCircle, X } from 'lucide-react';
 import { Language, SiteConfig } from '@/lib/types';
 import { translations } from '@/lib/translations';
 
+const FACEBOOK_URL = 'https://www.facebook.com/share/19Qi2zh2Pv/?mibextid=wwXIfr';
+const INSTAGRAM_URL = 'https://www.instagram.com/pirateszipline_roatan?stkn=a29xMTV2YWlxYng0&utm_source=qr';
+const CONTACT_PHONES = [
+  { display: '+504 3387-7652', href: '+50433877652' },
+  { display: '+504 9990-4937', href: '+50499904937' },
+  { display: '+504 9992-2033', href: '+50499922033' },
+];
+
+function FacebookIcon() {
+  return <svg viewBox="0 0 24 24" aria-hidden="true" className="h-4 w-4 fill-current"><path d="M13.7 22v-9h3l.45-3.5H13.7V7.27c0-1.01.28-1.7 1.73-1.7h1.85V2.44a24.8 24.8 0 0 0-2.7-.14c-2.67 0-4.5 1.63-4.5 4.62V9.5H7v3.5h3.08v9h3.62Z" /></svg>;
+}
+
+function InstagramIcon() {
+  return <svg viewBox="0 0 24 24" aria-hidden="true" className="h-4 w-4 fill-none stroke-current" strokeWidth="1.8"><rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4.25" /><circle cx="17.4" cy="6.65" r="1" className="fill-current stroke-none" /></svg>;
+}
+
 interface FooterProps {
   lang: Language;
   siteConfig: SiteConfig;
@@ -70,22 +86,26 @@ export function Footer({ lang, siteConfig }: FooterProps) {
               &ldquo;{siteConfig.tagline[lang] || t.footer.slogan}&rdquo;
             </p>
 
-            <div className="pt-2 flex items-center gap-3">
+            <div className="pt-2 flex items-center gap-3" aria-label={lang === 'es' ? 'Redes sociales oficiales' : 'Official social media'}>
               <a
-                href={siteConfig.facebookUrl}
+                href={FACEBOOK_URL}
                 target="_blank"
-                rel="noreferrer"
-                className="w-8 h-8 rounded-full bg-[#111923] border border-gray-700 flex items-center justify-center hover:border-[#d4af37] hover:text-[#d4af37] text-xs transition-colors"
+                rel="noopener noreferrer"
+                aria-label="Facebook"
+                title="Facebook"
+                className="footer-social-link"
               >
-                FB
+                <FacebookIcon />
               </a>
               <a
-                href={siteConfig.instagramUrl}
+                href={INSTAGRAM_URL}
                 target="_blank"
-                rel="noreferrer"
-                className="w-8 h-8 rounded-full bg-[#111923] border border-gray-700 flex items-center justify-center hover:border-[#d4af37] hover:text-[#d4af37] text-xs transition-colors"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+                title="Instagram"
+                className="footer-social-link"
               >
-                IG
+                <InstagramIcon />
               </a>
               <a
                 href={siteConfig.tripadvisorUrl}
@@ -110,38 +130,8 @@ export function Footer({ lang, siteConfig }: FooterProps) {
                 </Link>
               </li>
               <li>
-                <Link href="/experiencia" className="hover:text-[#d4af37] transition-colors">
-                  {t.nav.experience}
-                </Link>
-              </li>
-              <li>
-                <Link href="/precios" className="hover:text-[#d4af37] transition-colors">
-                  {t.nav.prices}
-                </Link>
-              </li>
-              <li>
-                <Link href="/galeria" className="hover:text-[#d4af37] transition-colors">
-                  {t.nav.gallery}
-                </Link>
-              </li>
-              <li>
-                <Link href="/ubicacion" className="hover:text-[#d4af37] transition-colors">
-                  {t.nav.location}
-                </Link>
-              </li>
-              <li>
                 <Link href="/contacto" className="hover:text-[#d4af37] transition-colors">
                   {t.nav.contact}
-                </Link>
-              </li>
-              <li>
-                <Link href="/es" hrefLang="es" className="hover:text-[#d4af37] transition-colors">
-                  Español · Turismo en Roatán
-                </Link>
-              </li>
-              <li>
-                <Link href="/reservar" className="hover:text-[#d4af37] font-bold text-[#ffd778] transition-colors">
-                  {t.nav.bookNow}
                 </Link>
               </li>
             </ul>
@@ -171,11 +161,15 @@ export function Footer({ lang, siteConfig }: FooterProps) {
               {t.footer.contact}
             </h4>
             <ul className="space-y-2.5 text-xs sm:text-sm">
-              <li className="flex items-center gap-2">
-                <Phone className="w-4 h-4 text-[#d4af37] shrink-0" />
-                <a href={`tel:${siteConfig.phone}`} className="hover:text-[#d4af37]">
-                  {siteConfig.phone}
-                </a>
+              <li className="flex items-start gap-2">
+                <Phone className="mt-0.5 w-4 h-4 text-[#d4af37] shrink-0" />
+                <div className="flex flex-col gap-1">
+                  {CONTACT_PHONES.map(phone => (
+                    <a key={phone.href} href={`tel:${phone.href}`} className="hover:text-[#d4af37]">
+                      {phone.display}
+                    </a>
+                  ))}
+                </div>
               </li>
               <li className="flex items-center gap-2">
                 <MessageCircle className="w-4 h-4 text-emerald-400 shrink-0" />
