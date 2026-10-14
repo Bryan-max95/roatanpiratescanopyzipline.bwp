@@ -35,13 +35,15 @@ export function Header({
   }, []);
 
   const navLinks = [
-    { label: t.nav.home, href: '/' },
-    { label: t.nav.experience, href: '/experiencia' },
-    { label: t.nav.prices, href: '/precios' },
-    { label: t.nav.gallery, href: '/galeria' },
-    { label: t.nav.location, href: '/ubicacion' },
-    { label: t.nav.contact, href: '/contacto' }
+    { label: t.nav.home, href: '/', visible: true },
+    { label: t.nav.experience, href: '/experiencia', visible: false },
+    { label: t.nav.prices, href: '/precios', visible: false },
+    { label: t.nav.location, href: '/ubicacion', visible: false },
+    { label: t.nav.gallery, href: '/galeria', visible: false },
+    { label: t.nav.contact, href: '/contacto', visible: true }
   ];
+
+  const visibleNavLinks = navLinks.filter((link) => link.visible);
 
   const isLinkActive = (href: string) => {
     if (href === '/') {
@@ -65,27 +67,26 @@ export function Header({
           <Link
             href="/"
             id="brand-logo"
-            className="flex items-center gap-3 group text-left"
+            aria-label="Roatan Pirates of The Caribbean Xtreme Canopy Zipline — Home"
+            className="group flex min-w-0 items-center gap-2.5 text-left sm:gap-3"
           >
-            <div className="relative w-14 h-14 sm:w-16 sm:h-16 shrink-0 transition-transform duration-300 group-hover:scale-105">
-              <Image src="/brand/pirates-logo.png" alt="Pirates of the Caribbean Zipline & Canopy official logo" fill sizes="64px" className="object-contain drop-shadow-[0_5px_10px_rgba(0,0,0,.65)]" priority />
+            <div className="relative h-14 w-14 shrink-0 transition-transform duration-300 group-hover:scale-105 sm:h-16 sm:w-16">
+              <Image src="/brand/pirates-logo.png" alt="Roatan Pirates of The Caribbean Xtreme Canopy Zipline official logo" fill sizes="64px" className="object-contain drop-shadow-[0_5px_10px_rgba(0,0,0,.65)]" priority />
             </div>
-            <div>
-              <div className="font-heading text-base sm:text-lg font-bold tracking-wider text-white leading-tight flex items-center gap-1.5">
-                <span>PIRATES</span>
-                <span className="text-[#d4af37] text-sm font-normal uppercase tracking-widest hidden sm:inline">
-                  • ROATÁN
-                </span>
+            <div className="min-w-0 max-w-[11.5rem] sm:max-w-[18rem] xl:max-w-[22rem]">
+              <div className="font-heading text-[10px] font-bold uppercase leading-[1.18] tracking-[.08em] text-white sm:text-[12px] sm:tracking-[.1em] xl:text-[13px]">
+                <span className="text-[#e2bd68]">Roatan</span>{' '}
+                <span>Pirates of The Caribbean</span>
               </div>
-              <div className="text-[9px] tracking-[.18em] uppercase text-[#c5a059] font-medium">
-                Extreme Canopy · Roatán
+              <div className="mt-1 border-t border-[#c5a059]/45 pt-1 text-[8px] font-bold uppercase leading-none tracking-[.18em] text-[#c5a059] sm:text-[9px] sm:tracking-[.22em]">
+                Xtreme Canopy Zipline
               </div>
             </div>
           </Link>
 
           {/* Desktop Navigation Links */}
           <nav className="hidden lg:flex items-center gap-6 text-sm font-medium">
-            {navLinks.map((link) => {
+            {visibleNavLinks.map((link) => {
               const active = isLinkActive(link.href);
               return (
                 <Link
@@ -175,7 +176,7 @@ export function Header({
           className="lg:hidden bg-[#0a0f16]/98 border-b border-[#c5a059]/40 px-6 py-6 shadow-2xl backdrop-blur-xl animate-in slide-in-from-top duration-200"
         >
           <nav className="flex flex-col space-y-4 text-center">
-            {navLinks.map((link) => {
+            {visibleNavLinks.map((link) => {
               const active = isLinkActive(link.href);
               return (
                 <Link
