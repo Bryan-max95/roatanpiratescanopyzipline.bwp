@@ -29,8 +29,8 @@ export const initialSiteConfig: SiteConfig = {
     es: 'Domingo: solo reservaciones · Lunes–viernes: 8:00 AM–4:00 PM · Sábado: cerrado',
     en: 'Sunday: reservations only · Monday–Friday: 8:00 AM–4:00 PM · Saturday: closed'
   },
-  facebookUrl: 'https://facebook.com',
-  instagramUrl: 'https://instagram.com',
+  facebookUrl: 'https://www.facebook.com/share/19Qi2zh2Pv/?mibextid=wwXIfr',
+  instagramUrl: 'https://www.instagram.com/pirateszipline_roatan?stkn=a29xMTV2YWlxYng0&utm_source=qr',
   tripadvisorUrl: 'https://tripadvisor.com',
   googleMapsUrl: 'https://maps.google.com/?q=Pirates+of+the+Caribbean+Zipline+Roatan',
   cruisePortNotes: {
