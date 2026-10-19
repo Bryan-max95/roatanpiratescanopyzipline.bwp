@@ -1,141 +1,112 @@
 'use client';
 
-import React from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
-import { Language, SiteConfig } from '@/lib/types';
-import { translations } from '@/lib/translations';
+import { Ship, CheckCircle2 } from 'lucide-react';
+import { useAppStore } from '@/lib/store';
+import { Hero } from '@/components/Hero';
+import { OfficialPackages } from '@/components/OfficialPackages';
 
-interface HeroProps {
-  lang: Language;
-  siteConfig: SiteConfig;
-  onBookClick?: () => void;
-  onExploreClick?: () => void;
-}
-
-export function Hero({ lang, siteConfig, onBookClick, onExploreClick }: HeroProps) {
-  const t = translations[lang];
+export default function HomePage() {
+  const { lang, siteConfig } = useAppStore();
 
   return (
-    <section
-      id="inicio"
-      className="relative min-h-[94vh] flex items-center justify-center pt-24 pb-16 overflow-hidden bg-[#090e15]"
-    >
-      {/* Background Photography with authentic oceanic contrast */}
-      <div className="absolute inset-0 z-0 select-none">
-        <Image
-          src="/image/homeweb.jpeg"
-          alt="Guests enjoying the clear boat adventure in Roatan"
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover object-center"
-          referrerPolicy="no-referrer"
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#05080c]/95 via-[#071019]/75 to-[#05080c]/45" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#090e15] via-transparent to-[#090e15]/75" />
-      </div>
+    <div className="bg-[#070b10]">
+      {/* Hero Section */}
+      <Hero
+        lang={lang}
+        siteConfig={siteConfig}
+      />
 
-      <div className="relative z-10 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 text-left flex flex-col items-start">
-        {/* Editorial Sub-badge */}
-        <div className="inline-block px-4 py-1.5 rounded-full bg-[#111923]/90 border border-[#c5a059]/40 text-[#d4af37] text-xs font-semibold tracking-widest uppercase mb-6 shadow-sm">
-          {t.hero.tag}
-        </div>
+      <OfficialPackages lang={lang} siteConfig={siteConfig} />
 
-        {/* Main Headline */}
-        <h1
-          id="hero-title"
-          className="font-heading text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-bold text-white tracking-tight leading-[1.02] max-w-5xl drop-shadow-md"
-        >
-          {siteConfig.heroTitle[lang] || t.hero.title}
-        </h1>
+      {/* Cruise Passengers Assurance Banner */}
+      <section className="py-16 bg-[#0c131c] border-t border-b border-[#c5a059]/20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="bg-[#111923] border-2 border-[#c5a059]/40 rounded-3xl p-8 sm:p-12 relative overflow-hidden">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+              <div className="lg:col-span-8">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#1c2837] border border-[#c5a059]/40 text-[#ffd778] text-xs font-bold uppercase tracking-wider mb-4">
+                  <Ship className="w-4 h-4 text-[#ffd778]" />
+                  <span>{lang === 'es' ? 'Garantía Oficial de Crucero' : 'Official Cruise Guarantee'}</span>
+                </div>
+                <h3 className="font-heading text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-3 leading-tight">
+                  {lang === 'es'
+                    ? '100% Garantía de Regreso a Tiempo a tu Barco'
+                    : '100% On-Time Return Guarantee to Your Cruise Ship'}
+                </h3>
+                <p className="text-sm sm:text-base text-gray-300 leading-relaxed">
+                  {lang === 'es'
+                    ? 'Con más de 15 años atendiendo a miles de pasajeros de Carnival, Royal Caribbean, Celebrity, Princess, NCL y MSC, nunca hemos hecho perder un barco a un viajero. Te retornamos al puerto con un mínimo de 2 horas de anticipación a la hora de partida.'
+                    : 'With over 15 years serving travelers from Carnival, Royal Caribbean, Celebrity, Princess, NCL, and MSC, not a single guest has ever missed a ship. We return you to port at least 2 hours before all-aboard time.'}
+                </p>
 
-        {/* Subtitle */}
-        <p
-          id="hero-subtitle"
-          className="mt-6 text-lg sm:text-xl text-gray-200 max-w-2xl font-normal leading-relaxed"
-        >
-          {siteConfig.heroSubtitle[lang] || t.hero.subtitle}
-        </p>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6 text-xs text-gray-300">
+                  <div className="flex items-center gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+                    <span>{lang === 'es' ? 'Recogida privada en muelle' : 'Direct pier pickup'}</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+                    <span>{lang === 'es' ? 'Monitoreo de atraque en vivo' : 'Live ship docking tracking'}</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+                    <span>{lang === 'es' ? 'Reembolso por desvío de puerto' : 'Full refund if port is missed'}</span>
+                  </div>
+                </div>
+              </div>
 
-        {/* Secondary Phrase */}
-        <p className="mt-3 text-xs sm:text-sm text-[#d4af37] font-semibold tracking-widest uppercase">
-          {siteConfig.heroSecondary[lang] || t.hero.secondary}
-        </p>
-
-        {/* Call to Action Buttons */}
-        <div className="mt-8 flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
-          <Link
-            href="/reservar"
-            id="hero-primary-book-btn"
-            onClick={onBookClick}
-            className="btn-wine-red w-full sm:w-auto px-9 py-3.5 rounded-full text-base font-bold tracking-wide transition-all shadow-lg hover:shadow-xl text-center"
-          >
-            {t.hero.ctaBook}
-          </Link>
-
-          <Link
-            href="/experiencia"
-            id="hero-secondary-explore-btn"
-            onClick={onExploreClick}
-            className="btn-gold-outline w-full sm:w-auto px-8 py-3.5 rounded-full text-base font-semibold tracking-wide transition-all text-center"
-          >
-            {t.hero.ctaExplore}
-          </Link>
-        </div>
-
-        {/* Authentic Excursion Metrics - Professional editorial presentation */}
-        <div
-          id="hero-benefits-container"
-          className="mt-14 w-full max-w-4xl grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 border-t border-[#c5a059]/20 pt-8"
-        >
-          <div className="bg-[#101822]/80 border border-gray-800/80 rounded-xl p-4 text-center">
-            <span className="block font-heading text-2xl sm:text-3xl font-bold text-[#ffd778]">
-              370 lbs
-            </span>
-            <span className="text-[11px] font-semibold text-gray-300 uppercase tracking-wider block mt-1">
-              {lang === 'es' ? 'Peso Máximo' : 'Maximum Weight'}
-            </span>
-          </div>
-
-          <div className="bg-[#101822]/80 border border-gray-800/80 rounded-xl p-4 text-center">
-            <span className="block font-heading text-2xl sm:text-3xl font-bold text-[#ffd778]">
-              1.5 hr
-            </span>
-            <span className="text-[11px] font-semibold text-gray-300 uppercase tracking-wider block mt-1">
-              {lang === 'es' ? 'Duración Aproximada' : 'Approx. Duration'}
-            </span>
-          </div>
-
-          <div className="bg-[#101822]/80 border border-gray-800/80 rounded-xl p-4 text-center">
-            <span className="block font-heading text-2xl sm:text-3xl font-bold text-[#ffd778]">
-              66 in
-            </span>
-            <span className="text-[11px] font-semibold text-gray-300 uppercase tracking-wider block mt-1">
-              {lang === 'es' ? 'Cintura del Arnés' : 'Harness Waist Fit'}
-            </span>
-          </div>
-
-          <div className="bg-[#101822]/80 border border-gray-800/80 rounded-xl p-4 text-center">
-            <span className="block font-heading text-2xl sm:text-3xl font-bold text-[#ffd778]">
-              EN / ES
-            </span>
-            <span className="text-[11px] font-semibold text-gray-300 uppercase tracking-wider block mt-1">
-              {lang === 'es' ? 'Guías Bilingües' : 'Bilingual Guides'}
-            </span>
+              <div className="lg:col-span-4 flex flex-col sm:flex-row lg:flex-col gap-3 justify-center">
+                <Link
+                  href="/reservar"
+                  className="btn-wine-red text-center py-3.5 px-6 rounded-full text-sm font-bold tracking-wide"
+                >
+                  {lang === 'es' ? 'Reservar Excursión Crucero' : 'Book Cruise Excursion'}
+                </Link>
+                <Link
+                  href="/ubicacion"
+                  className="btn-gold-outline text-center py-3.5 px-6 rounded-full text-sm font-semibold tracking-wide"
+                >
+                  {lang === 'es' ? 'Ver Logística de Puerto' : 'View Port Logistics'}
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
+      </section>
 
-        {/* Cruise Guarantee - Editorial note */}
-        <div className="mt-8 text-xs sm:text-sm text-gray-300 bg-[#0c141e]/90 px-5 py-2.5 rounded-full border border-gray-800 shadow-sm">
-          <span className="text-[#d4af37] font-bold mr-2">•</span>
-          <span>
-            {lang === 'es'
-              ? 'Garantía oficial de regreso a tiempo para pasajeros de Mahogany Bay y Coxen Hole'
-              : 'Official on-time return guarantee for Mahogany Bay & Coxen Hole cruise guests'}
+      {/* Direct Quick Booking Callout Section */}
+      <section className="py-16 bg-gradient-to-b from-[#090e15] to-[#070b10] border-t border-[#c5a059]/20 text-center">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <span className="text-xs font-bold text-[#c5a059] uppercase tracking-widest block mb-2">
+            {lang === 'es' ? 'Tu Próxima Aventura Te Espera' : 'Your Next Adventure Awaits'}
           </span>
+          <h2 className="font-heading text-3xl sm:text-4xl font-bold text-white mb-4">
+            {lang === 'es'
+              ? '¿Listo para volar en el mejor canopy de Roatán?'
+              : 'Ready to fly Roatan’s finest canopy zipline?'}
+          </h2>
+          <p className="text-base text-gray-300 max-w-2xl mx-auto mb-8">
+            {lang === 'es'
+              ? 'Reserva ahora sin pago previo. Recibe confirmación instantánea por WhatsApp y asegura tu horario preferido.'
+              : 'Book now with zero advance deposit. Receive immediate WhatsApp confirmation and secure your preferred flight time.'}
+          </p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Link
+              href="/reservar"
+              className="btn-wine-red px-10 py-4 rounded-full text-base font-bold tracking-wide w-full sm:w-auto"
+            >
+              {lang === 'es' ? 'Reservar en Línea Ahora' : 'Book Online Now'}
+            </Link>
+            <Link
+              href="/precios"
+              className="btn-gold-outline px-8 py-4 rounded-full text-base font-semibold tracking-wide w-full sm:w-auto"
+            >
+              {lang === 'es' ? 'Consultar Tarifas' : 'Check Rates'}
+            </Link>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
   );
 }
