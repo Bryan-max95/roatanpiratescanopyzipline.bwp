@@ -1,86 +1,13 @@
 'use client';
 
-import React from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
-import { ArrowRight, ShieldCheck, Ship, Clock, CheckCircle2 } from 'lucide-react';
+import { Ship, CheckCircle2 } from 'lucide-react';
 import { useAppStore } from '@/lib/store';
 import { Hero } from '@/components/Hero';
-import { ReviewsSection } from '@/components/ReviewsSection';
 import { OfficialPackages } from '@/components/OfficialPackages';
-import { GallerySection } from '@/components/GallerySection';
 
 export default function HomePage() {
-  const { lang, siteConfig, reviews, gallery } = useAppStore();
-
-  const modules = [
-    {
-      title: lang === 'es' ? 'La Experiencia' : 'The Experience',
-      subtitle:
-        lang === 'es'
-          ? 'Circuito de 9 cables, 18 plataformas sobre las copas de los árboles y combos con santuario de perezosos.'
-          : '9 high-speed cables, 18 treetop jungle platforms, and combos with our sloth and monkey sanctuary.',
-      href: '/experiencia',
-      image: '/image/WhatsApp%20Image%202026-09-21%20at%208.25.05%20PM.jpeg',
-      badge: lang === 'es' ? 'Circuito Canopy' : 'Canopy Circuit',
-      actionText: lang === 'es' ? 'Explorar Experiencia' : 'Explore Experience'
-    },
-    {
-      title: lang === 'es' ? 'Precios y Paquetes' : 'Prices & Packages',
-      subtitle:
-        lang === 'es'
-          ? 'Tarifas oficiales transparentes desde $65 USD. Sin cargos sorpresa, pago el día del tour y cancelación gratuita.'
-          : 'Transparent official rates starting at $65 USD. No surprise fees, pay upon check-in, and free cancellation.',
-      href: '/precios',
-      image: '/image/homeweb.jpeg',
-      badge: lang === 'es' ? 'Tarifas Oficiales' : 'Official Rates',
-      actionText: lang === 'es' ? 'Ver Precios y Paquetes' : 'View Prices & Packages'
-    },
-    {
-      title: lang === 'es' ? 'Galería de Aventuras' : 'Adventure Gallery',
-      subtitle:
-        lang === 'es'
-          ? 'Fotografías reales en alta resolución, tomas de acción en plataformas y videos aéreos de los visitantes.'
-          : 'High-definition real guest photos, adrenaline-packed platform shots, and aerial video footage.',
-      href: '/galeria',
-      image: '/image/WhatsApp%20Image%202026-09-21%20at%208.25.04%20PM.jpeg',
-      badge: lang === 'es' ? 'Fotos y Videos' : 'Photos & Videos',
-      actionText: lang === 'es' ? 'Abrir Galería' : 'Open Gallery'
-    },
-    {
-      title: lang === 'es' ? 'Ubicación y Traslados' : 'Location & Port Pickup',
-      subtitle:
-        lang === 'es'
-          ? 'Guía paso a paso para pasajeros de Mahogany Bay y Coxen Hole. Tiempos de traslado y mapa interactivo.'
-          : 'Step-by-step pickup logistics for Mahogany Bay and Coxen Hole cruise ports, travel times, and map.',
-      href: '/ubicacion',
-      image: '/image/WhatsApp%20Image%202026-09-21%20at%208.25.08%20PM.jpeg',
-      badge: lang === 'es' ? 'Logística y Mapa' : 'Logistics & Map',
-      actionText: lang === 'es' ? 'Ver Ubicación y Rutas' : 'View Location & Routes'
-    },
-    {
-      title: lang === 'es' ? 'Reservaciones en Línea' : 'Online Booking',
-      subtitle:
-        lang === 'es'
-          ? 'Asegura tu cupo en 3 sencillos pasos. Generación de comprobante digital y confirmación por WhatsApp.'
-          : 'Secure your excursion in 3 easy steps. Instant digital voucher generation and direct WhatsApp confirmation.',
-      href: '/reservar',
-      image: '/image/WhatsApp%20Image%202026-09-21%20at%208.25.02%20PM%20(2).jpeg',
-      badge: lang === 'es' ? 'Reserva Inmediata' : 'Instant Booking',
-      actionText: lang === 'es' ? 'Reservar Mi Lugar' : 'Book My Tour'
-    },
-    {
-      title: lang === 'es' ? 'Contacto y Soporte' : 'Contact & Support',
-      subtitle:
-        lang === 'es'
-          ? 'Asistencia telefónica y chat de WhatsApp con el equipo en Roatán. Preguntas frecuentes y cotizaciones grupales.'
-          : 'Direct phone and WhatsApp chat with our local team in Roatan. Comprehensive FAQs and group bookings.',
-      href: '/contacto',
-      image: '/image/WhatsApp%20Image%202026-09-21%20at%208.25.06%20PM.jpeg',
-      badge: lang === 'es' ? 'Atención al Cliente' : 'Guest Support',
-      actionText: lang === 'es' ? 'Contactar al Equipo' : 'Contact Team'
-    }
-  ];
+  const { lang, siteConfig } = useAppStore();
 
   return (
     <div className="bg-[#070b10]">
@@ -91,75 +18,6 @@ export default function HomePage() {
       />
 
       <OfficialPackages lang={lang} siteConfig={siteConfig} />
-
-      {/* Main Modules Directory: Dedicated Pages Overview */}
-      <section className="py-20 bg-[#090f17] border-t border-[#c5a059]/20 relative">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <span className="inline-block px-4 py-1 rounded-full bg-[#162230] border border-[#c5a059]/40 text-[#ffd778] text-xs font-bold uppercase tracking-widest mb-3">
-              {lang === 'es' ? 'Estructura de la Plataforma' : 'Platform Architecture'}
-            </span>
-            <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-tight">
-              {lang === 'es' ? 'Explora Nuestras Secciones' : 'Explore Our Dedicated Modules'}
-            </h2>
-            <div className="w-20 h-1 bg-[#8c1d24] mx-auto my-4 rounded-full" />
-            <p className="text-base sm:text-lg text-gray-300">
-              {lang === 'es'
-                ? 'Navega por cada módulo dedicado para conocer en detalle los circuitos de tirolesa, tarifas oficiales, galería de fotos, traslados desde puertos y el motor de reservación.'
-                : 'Browse each dedicated page to explore zipline circuits, official transparent pricing, media galleries, cruise port logistics, and our booking engine.'}
-            </p>
-          </div>
-
-          {/* 6 Modular Cards Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {modules.map((mod, idx) => (
-              <div
-                key={idx}
-                className="group bg-[#111923] rounded-3xl border border-gray-800 hover:border-[#c5a059]/60 transition-all duration-300 overflow-hidden flex flex-col shadow-xl hover:-translate-y-1"
-              >
-                {/* Visual Thumbnail */}
-                <div className="relative h-52 w-full overflow-hidden bg-[#0a0e14]">
-                  <Image
-                    src={mod.image}
-                    alt={mod.title}
-                    fill
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    className="object-cover group-hover:scale-105 transition-transform duration-700"
-                    referrerPolicy="no-referrer"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#111923] via-[#111923]/40 to-transparent" />
-                  <span className="absolute top-4 left-4 px-3 py-1 rounded-full bg-[#0a0f16]/90 border border-[#c5a059]/40 text-[#ffd778] text-[11px] font-bold uppercase tracking-wider backdrop-blur-sm">
-                    {mod.badge}
-                  </span>
-                </div>
-
-                {/* Card Body */}
-                <div className="p-6 flex-1 flex flex-col justify-between">
-                  <div>
-                    <h3 className="font-heading text-2xl font-bold text-white group-hover:text-[#ffd778] transition-colors">
-                      {mod.title}
-                    </h3>
-                    <p className="mt-2.5 text-sm text-gray-300 leading-relaxed">
-                      {mod.subtitle}
-                    </p>
-                  </div>
-
-                  {/* Navigation CTA */}
-                  <div className="pt-6 mt-6 border-t border-gray-800/80">
-                    <Link
-                      href={mod.href}
-                      className="inline-flex items-center gap-2 text-xs font-bold text-[#c5a059] group-hover:text-[#ffd778] uppercase tracking-wider transition-colors"
-                    >
-                      <span>{mod.actionText}</span>
-                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Cruise Passengers Assurance Banner */}
       <section className="py-16 bg-[#0c131c] border-t border-b border-[#c5a059]/20">
@@ -216,12 +74,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
-      {/* Guest Reviews & Accreditations */}
-      <ReviewsSection lang={lang} reviews={reviews} />
-
-      {/* Real visitor gallery placed on the homepage before the final contact/booking block. */}
-      <GallerySection lang={lang} gallery={gallery} />
 
       {/* Direct Quick Booking Callout Section */}
       <section className="py-16 bg-gradient-to-b from-[#090e15] to-[#070b10] border-t border-[#c5a059]/20 text-center">
