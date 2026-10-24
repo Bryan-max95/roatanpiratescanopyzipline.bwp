@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 const configuredUrl = process.env.NEXT_PUBLIC_SITE_URL || process.env.APP_URL;
 export const siteUrl = configuredUrl && /^https?:\/\//.test(configuredUrl) && !configuredUrl.includes('MY_APP_URL')
   ? configuredUrl.replace(/\/$/, '')
-  : 'https://www.roatanpiratescanopy.com';
+  : 'https://roatanpiratescanopyzipline.com';
 
 export const brandName = 'Roatan Pirates of the Caribbean Extreme Canopy Zipline';
 export const defaultImage = '/image/homeweb.jpeg';
@@ -37,8 +37,7 @@ export const localBusinessSchema = {
   logo: `${siteUrl}/brand/pirates-logo.png`,
   image: `${siteUrl}${defaultImage}`,
   description: 'Extreme canopy zipline tours, clear boat adventures, reef snorkeling, animal parks and private shore excursions in Roatan, Honduras.',
-  telephone: ['+50433877652', '+50499904937', '+50499922033'],
-  email: 'info@roatanpiratescanopy.com',
+  telephone: ['+50433877652', '+50494979106'],
   priceRange: '$35–$75 USD',
   currenciesAccepted: 'USD, HNL',
   paymentAccepted: 'Cash, credit card',
