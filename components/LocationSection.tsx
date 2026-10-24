@@ -12,6 +12,10 @@ interface LocationSectionProps {
 
 export function LocationSection({ lang, siteConfig }: LocationSectionProps) {
   const t = translations[lang];
+  const contactChannels = [
+    { number: '+504 3387-7652', whatsapp: '50433877652', label: lang === 'es' ? 'Cruceros' : 'Cruise ships' },
+    { number: '+504 9497-9106', whatsapp: '50494979106', label: lang === 'es' ? 'Hotel o Airbnb' : 'Hotel or Airbnb' },
+  ];
 
   return (
     <section id="ubicacion" className="py-24 bg-[#090e15] relative text-white">
@@ -61,37 +65,21 @@ export function LocationSection({ lang, siteConfig }: LocationSectionProps) {
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  <div className="p-4 bg-[#151f2c] rounded-xl border border-gray-800">
-                    <span className="text-xs text-gray-400 block mb-1 uppercase font-semibold">
-                      {t.location.phoneLabel}
-                    </span>
-                    <a href={`tel:${siteConfig.phone}`} className="font-bold text-white hover:text-[#ffd778] block">
-                      {siteConfig.phone}
-                    </a>
-                  </div>
-
-                  <div className="p-4 bg-[#151f2c] rounded-xl border border-gray-800">
-                    <span className="text-xs text-gray-400 block mb-1 uppercase font-semibold">
-                      {t.location.whatsappLabel}
-                    </span>
-                    <a
-                      href={`https://wa.me/${siteConfig.whatsapp.replace(/[^0-9]/g, '')}`}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="font-bold text-emerald-400 hover:text-emerald-300 block"
-                    >
-                      {siteConfig.whatsapp}
-                    </a>
-                  </div>
-                </div>
-
-                <div className="p-4 bg-[#151f2c] rounded-xl border border-gray-800">
-                  <span className="text-xs text-gray-400 block mb-1 uppercase font-semibold">
-                    {t.location.emailLabel}
-                  </span>
-                  <a href={`mailto:${siteConfig.email}`} className="font-bold text-white hover:text-[#ffd778]">
-                    {siteConfig.email}
-                  </a>
+                  {contactChannels.map(channel => (
+                    <div key={channel.whatsapp} className="p-4 bg-[#151f2c] rounded-xl border border-gray-800">
+                      <span className="text-xs text-gray-400 block mb-1 uppercase font-semibold">
+                        WhatsApp · {channel.label}
+                      </span>
+                      <a
+                        href={`https://wa.me/${channel.whatsapp}`}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="font-bold text-emerald-400 hover:text-emerald-300 block"
+                      >
+                        {channel.number}
+                      </a>
+                    </div>
+                  ))}
                 </div>
 
                 <div className="p-4 bg-[#151f2c] rounded-xl border border-gray-800">
