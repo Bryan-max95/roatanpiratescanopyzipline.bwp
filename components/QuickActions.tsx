@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { MessageCircle, Phone, Mail, X } from 'lucide-react';
+import { MessageCircle, Phone, X } from 'lucide-react';
 import { Language, SiteConfig } from '@/lib/types';
 import { translations } from '@/lib/translations';
 
@@ -52,15 +52,6 @@ export function QuickActions({ lang, siteConfig, onBookClick }: QuickActionsProp
             className="w-11 h-11 rounded-full bg-[#121b27] border border-[#c5a059]/40 text-[#ffd778] hover:bg-[#1a2636] flex items-center justify-center shadow-lg transition-transform hover:scale-105"
           >
             <Phone className="w-4 h-4" />
-          </a>
-
-          {/* Quick Email Button */}
-          <a
-            href={`mailto:${siteConfig.email}`}
-            title={lang === 'es' ? 'Enviar correo' : 'Send email'}
-            className="w-11 h-11 rounded-full bg-[#121b27] border border-[#c5a059]/40 text-[#ffd778] hover:bg-[#1a2636] flex items-center justify-center shadow-lg transition-transform hover:scale-105"
-          >
-            <Mail className="w-4 h-4" />
           </a>
 
           {/* Primary WhatsApp Floating Button */}
