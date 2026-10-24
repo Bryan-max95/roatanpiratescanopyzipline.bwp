@@ -3,7 +3,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowRight, ChevronLeft, ChevronRight, Images, Maximize2, Move, Play, RotateCcw, X } from 'lucide-react';
+import { ArrowRight, ChevronLeft, ChevronRight, Maximize2, Move, Play, RotateCcw, X } from 'lucide-react';
 import { Language, GalleryItem } from '@/lib/types';
 import { translations } from '@/lib/translations';
 
@@ -33,7 +33,11 @@ export function GallerySection({ lang, gallery }: GallerySectionProps) {
     { key: 'guias', label: t.gallery.guides },
     { key: 'instalaciones', label: t.gallery.facilities },
     { key: 'videos', label: t.gallery.videos }
-  ];
+  ].filter((category) => {
+    if (category.key === 'all') return true;
+    if (category.key === 'videos') return gallery.some((item) => item.type === 'video');
+    return gallery.some((item) => item.category === category.key);
+  });
 
   const filteredItems = gallery.filter((item) => {
     if (selectedCategory === 'all') return true;
@@ -153,14 +157,9 @@ export function GallerySection({ lang, gallery }: GallerySectionProps) {
   });
 
   return (
-    <section id="galeria" className="adventure-gallery" aria-labelledby="gallery-heading">
+    <section id="galeria" className="adventure-gallery" aria-label={lang === 'es' ? 'Galería de aventuras' : 'Adventure gallery'}>
       <div className="adventure-gallery-header">
-        <div>
-          <span className="adventure-gallery-kicker"><Images className="h-4 w-4" />{t.gallery.badge}</span>
-          <h2 id="gallery-heading">{lang === 'es' ? 'Explora. Mueve. Vive Roatán.' : 'Explore. Move. Experience Roatan.'}</h2>
-          <p>{lang === 'es' ? 'Arrastra las fotografías para explorar nuestros mejores momentos y presiónalas para verlas en grande.' : 'Drag the photographs to explore our best moments, then press one to see it full size.'}</p>
-        </div>
-        <div className="adventure-gallery-actions">
+        <div className="adventure-gallery-actions ml-auto">
           <button type="button" onClick={organizePhotos}><RotateCcw className="h-4 w-4" />{lang === 'es' ? 'Ordenar fotos' : 'Organize photos'}</button>
           <Link href="/reservar">{lang === 'es' ? 'Reservar aventura' : 'Book adventure'}<ArrowRight className="h-4 w-4" /></Link>
         </div>
