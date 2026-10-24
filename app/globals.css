@@ -1304,6 +1304,27 @@ body::before {
   box-shadow: 0 12px 24px rgba(67,43,21,.12), inset 0 0 35px rgba(91,56,25,.08);
 }
 .pirate-packages .pirate-package-card:hover { transform: translateY(-5px) rotate(-.15deg); border-color: rgba(103,57,30,.6); box-shadow: 0 20px 36px rgba(67,43,21,.2), inset 0 0 35px rgba(91,56,25,.08); }
+.pirate-package-media {
+  position: relative;
+  height: 8.5rem;
+  margin-top: 1.5rem;
+  overflow: hidden;
+  border: 1px solid rgba(91,59,30,.22);
+  border-radius: .5rem;
+  background: #d4bd91;
+}
+.pirate-package-media img {
+  filter: none;
+  opacity: 1;
+  transition: transform .45s ease;
+}
+.pirate-package-card:hover .pirate-package-media:not(.is-emblem) img { transform: scale(1.025); }
+.pirate-package-media.is-emblem {
+  background:
+    radial-gradient(circle at center, rgba(255,248,224,.82), transparent 53%),
+    linear-gradient(135deg, #d8c296, #eadab6);
+}
+.pirate-package-media.is-emblem img { padding: 1rem; }
 .pirate-package-icon { display: grid; width: 3rem; height: 3rem; place-items: center; border: 1px solid rgba(104,61,29,.35); border-radius: 50%; color: #74401f; background: rgba(118,70,32,.08); }
 .pirate-package-price span { color: #735f48; }
 .pirate-package-price strong { color: #2c2117; }
@@ -1379,11 +1400,12 @@ body::before {
 .pirate-guarantee-grid ul { display: grid; gap: .38rem; }
 .pirate-info-grid article > p { margin-top: .65rem; }
 .pirate-info-grid a:hover { color: #7b3829; }
-.pirate-phone-list { display: grid; gap: .35rem; }
-.pirate-phone-list a { width: max-content; font-weight: 800; }
-.pirate-guarantee-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); border-top: 1px solid rgba(74,46,23,.18); }
+.pirate-phone-list { display: grid; gap: .65rem; }
+.pirate-phone-list a { width: max-content; max-width: 100%; font-weight: 800; }
+.pirate-phone-list a span { display: block; color: #765f47; font-size: .62rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; }
+.pirate-guarantee-grid { display: grid; grid-template-columns: 1fr; border-top: 1px solid rgba(74,46,23,.18); }
 .pirate-guarantee-grid > div { padding: 1.6rem 2rem; }
-.pirate-guarantee-grid > div:first-child { border-right: 1px solid rgba(74,46,23,.18); }
+.pirate-guarantee-grid > div:first-child { border-right: 0; }
 .pirate-guarantee-grid svg { width: 1.5rem; height: 1.5rem; color: #7a3828; }
 .pirate-guarantee-grid li { position: relative; padding-left: 1rem; }
 .pirate-guarantee-grid li::before { content: ''; position: absolute; top: .7em; left: 0; width: .3rem; height: .3rem; border-radius: 50%; background: #7a3828; }
