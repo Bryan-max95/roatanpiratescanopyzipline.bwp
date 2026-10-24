@@ -15,7 +15,6 @@ import {
   MapPinned,
   PawPrint,
   Phone,
-  ShieldCheck,
   ShipWheel,
   Star,
   Trees,
@@ -34,6 +33,9 @@ type PackageSection = {
 type TourPackage = {
   icon: typeof Trees;
   price: number;
+  image: string;
+  imageAlt: LocalizedText;
+  imageMode?: 'cover' | 'contain';
   name: LocalizedText;
   summary: LocalizedText;
   features: LocalizedText[];
@@ -49,6 +51,9 @@ const packages: TourPackage[] = [
   {
     icon: Trees,
     price: 65,
+    image: '/brand/pirates-logo.png',
+    imageAlt: text('Official Pirates of the Caribbean Zipline emblem', 'Emblema oficial de Pirates of the Caribbean Zipline'),
+    imageMode: 'contain',
     name: text('Pirates Zipline Tour', 'Tour de Tirolesa Pirates'),
     summary: text(
       "One of Roatan's signature adventures: high-speed adrenaline, panoramic jungle views and professional guides who handle the technical details for you.",
@@ -72,11 +77,13 @@ const packages: TourPackage[] = [
     ],
     duration: text('Approximately 1½ hours.', 'Aproximadamente 1½ horas.'),
     bring: text('Sportswear, secure comfortable shoes, camera, bug spray and sunscreen. Lockers are available on-site.', 'Ropa deportiva, zapatos cómodos y seguros, cámara, repelente y protector solar. Hay casilleros disponibles en el lugar.'),
-    payment: text('Pristine, untorn US dollars and major credit cards are accepted. A 19% processing fee applies to credit-card payments.', 'Se aceptan dólares estadounidenses en perfecto estado y las principales tarjetas. Se aplica un cargo de procesamiento del 19% a pagos con tarjeta.'),
+    payment: text('Cash and PayPal are accepted. PayPal: paypal@roatanpiratescanopy.com.', 'Se aceptan efectivo y PayPal. PayPal: paypal@roatanpiratescanopy.com.'),
   },
   {
     icon: PawPrint,
     price: 35,
+    image: '/image/WhatsApp Image 2026-09-21 at 8.25.05 PM.jpeg',
+    imageAlt: text('Sloth encounter at a Roatan animal park', 'Encuentro con un perezoso en un parque animal de Roatán'),
     name: text('Pirates Animal Park Adventure', 'Aventura Pirates en Parque Animal'),
     summary: text(
       'Meet sloths, monkeys and exotic birds while choosing one or several nearby animal parks for your personalized day.',
@@ -107,11 +114,13 @@ const packages: TourPackage[] = [
     ],
     duration: text('Approximately 1 hour per park.', 'Aproximadamente 1 hora por parque.'),
     bring: text('Sportswear, comfortable walking shoes, hat, sunscreen, bug spray and camera.', 'Ropa deportiva, zapatos cómodos para caminar, sombrero, protector solar, repelente y cámara.'),
-    payment: text('Pristine, untorn US dollars and major credit cards are accepted.', 'Se aceptan dólares estadounidenses en perfecto estado y las principales tarjetas.'),
+    payment: text('Cash and PayPal are accepted. PayPal: paypal@roatanpiratescanopy.com.', 'Se aceptan efectivo y PayPal. PayPal: paypal@roatanpiratescanopy.com.'),
   },
   {
     icon: Map,
     price: 40,
+    image: '/image/WhatsApp Image 2026-09-21 at 8.25.04 PM (2).jpeg',
+    imageAlt: text('Guest enjoying a wildlife stop during a private Roatan island tour', 'Visitante disfrutando una parada de vida silvestre durante un tour privado por Roatán'),
     name: text('Pirates Private Island Tour', 'Tour Privado Pirates por la Isla'),
     summary: text(
       'Explore Roatan with a personal local guide, an air-conditioned vehicle and an itinerary built around your group instead of a crowded tour bus.',
@@ -143,11 +152,13 @@ const packages: TourPackage[] = [
     ],
     duration: text("Approximately 2–4 hours. Cruise guests must return at least 1 hour before the ship's scheduled departure.", 'Aproximadamente 2–4 horas. Los pasajeros de crucero deben regresar al menos 1 hora antes de la salida programada del barco.'),
     bring: text('Sportswear, comfortable shoes, camera and bug spray.', 'Ropa deportiva, zapatos cómodos, cámara y repelente.'),
-    payment: text('Pristine, untorn US dollars and major credit cards are accepted at most locations.', 'En la mayoría de los lugares se aceptan dólares estadounidenses en perfecto estado y las principales tarjetas.'),
+    payment: text('Cash and PayPal are accepted. PayPal: paypal@roatanpiratescanopy.com.', 'Se aceptan efectivo y PayPal. PayPal: paypal@roatanpiratescanopy.com.'),
   },
   {
     icon: Waves,
     price: 65,
+    image: '/image/homeweb.jpeg',
+    imageAlt: text('Guests aboard the clear boat adventure in Roatan', 'Visitantes a bordo de la aventura en bote transparente en Roatán'),
     name: text('Clear Boat Adventure', 'Aventura en Bote Transparente'),
     summary: text(
       "Glide over French Cay's pristine reef and see marine life through the transparent hull without entering the water. Optional snorkeling is available.",
@@ -177,11 +188,13 @@ const packages: TourPackage[] = [
     ],
     duration: text('Approximately 1½ hours.', 'Aproximadamente 1½ horas.'),
     bring: text('Sportswear, sunscreen, camera and easily removable shoes. The transparent hull is entered barefoot or with socks. For snorkeling, also bring towels and swimwear. Lockers are available.', 'Ropa deportiva, protector solar, cámara y zapatos fáciles de quitar. Se ingresa al casco transparente descalzo o con calcetines. Para snorkel, lleva también toallas y traje de baño. Hay casilleros.'),
-    payment: text('Pristine, untorn US dollars are accepted.', 'Se aceptan dólares estadounidenses en perfecto estado.'),
+    payment: text('Cash and PayPal are accepted. PayPal: paypal@roatanpiratescanopy.com.', 'Se aceptan efectivo y PayPal. PayPal: paypal@roatanpiratescanopy.com.'),
   },
   {
     icon: ShipWheel,
     price: 75,
+    image: '/image/WhatsApp Image 2026-09-21 at 8.25.03 PM (2).jpeg',
+    imageAlt: text('Boat experience above the Caribbean reef', 'Experiencia en bote sobre el arrecife del Caribe'),
     name: text('Glass Bottom Boat', 'Bote con Fondo de Cristal'),
     summary: text(
       "See the world's second-largest barrier reef, colorful fish, coral and marine life from the comfort of a glass-bottom boat.",
@@ -200,11 +213,13 @@ const packages: TourPackage[] = [
     ],
     duration: text('Approximately 3 hours total; the glass-bottom boat tour is about 45 minutes.', 'Aproximadamente 3 horas en total; el recorrido en bote dura unos 45 minutos.'),
     bring: text('Sportswear, non-skid shoes and camera.', 'Ropa deportiva, zapatos antideslizantes y cámara.'),
-    payment: text('Pristine, untorn US dollars and major credit cards are accepted.', 'Se aceptan dólares estadounidenses en perfecto estado y las principales tarjetas.'),
+    payment: text('Cash and PayPal are accepted. PayPal: paypal@roatanpiratescanopy.com.', 'Se aceptan efectivo y PayPal. PayPal: paypal@roatanpiratescanopy.com.'),
   },
   {
     icon: Anchor,
     price: 45,
+    image: '/image/WhatsApp Image 2026-09-21 at 8.25.04 PM.jpeg',
+    imageAlt: text('Caribbean water and reef near Roatan', 'Agua del Caribe y arrecife cerca de Roatán'),
     name: text('Pirates Private Island Beach Break', 'Día de Playa Pirates en Isla Privada'),
     summary: text(
       'Escape to a secure private island with white sand, crystal-clear water, beach chairs, restrooms and an on-site restaurant.',
@@ -226,11 +241,13 @@ const packages: TourPackage[] = [
     ],
     duration: text("Approximately 1–4 hours. Cruise guests must return at least 1 hour before the ship's scheduled departure.", 'Aproximadamente 1–4 horas. Los pasajeros de crucero deben regresar al menos 1 hora antes de la salida programada del barco.'),
     bring: text('Swimwear, towels, sunscreen, bug spray and camera.', 'Traje de baño, toallas, protector solar, repelente y cámara.'),
-    payment: text('Pristine, untorn US dollars and major credit cards are accepted.', 'Se aceptan dólares estadounidenses en perfecto estado y las principales tarjetas.'),
+    payment: text('Cash and PayPal are accepted. PayPal: paypal@roatanpiratescanopy.com.', 'Se aceptan efectivo y PayPal. PayPal: paypal@roatanpiratescanopy.com.'),
   },
   {
     icon: Binoculars,
     price: 50,
+    image: '/image/WhatsApp Image 2026-09-21 at 8.25.02 PM (1).jpeg',
+    imageAlt: text('Snorkeler exploring the reef in Roatan', 'Persona explorando el arrecife de Roatán con snorkel'),
     name: text('Reef Snorkel Adventure', 'Aventura de Snorkel en el Arrecife'),
     summary: text(
       "Take a guided boat trip to French Cay's pristine reef and explore its marine life with all snorkeling equipment included.",
@@ -255,15 +272,21 @@ const packages: TourPackage[] = [
     ],
     duration: text('Approximately 2 hours.', 'Aproximadamente 2 horas.'),
     bring: text('Sunscreen, camera, easily removable shoes, towels and swimwear.', 'Protector solar, cámara, zapatos fáciles de quitar, toallas y traje de baño.'),
-    payment: text('Pristine, untorn US dollars are accepted.', 'Se aceptan dólares estadounidenses en perfecto estado.'),
+    payment: text('Cash and PayPal are accepted. PayPal: paypal@roatanpiratescanopy.com.', 'Se aceptan efectivo y PayPal. PayPal: paypal@roatanpiratescanopy.com.'),
   },
 ];
 
 const CONTACT_PHONES = [
-  { display: '+504 3387-7652', href: '+50433877652' },
-  { display: '+504 9990-4937', href: '+50499904937' },
-  { display: '+504 9992-2033', href: '+50499922033' },
+  { display: '+504 3387-7652', href: '50433877652', en: 'Coming on a cruise ship', es: 'Visitantes de crucero' },
+  { display: '+504 9497-9106', href: '50494979106', en: 'Staying at a hotel or Airbnb', es: 'Huéspedes de hotel o Airbnb' },
 ];
+
+const LOCAL_PHONES = [
+  { display: '+504 9497-9106', href: '50494979106' },
+  { display: '+504 9990-4937', href: '50499904937' },
+];
+
+const PAYPAL_EMAIL = 'paypal@roatanpiratescanopy.com';
 
 const pick = (value: LocalizedText, lang: Language) => value[lang];
 
@@ -276,7 +299,7 @@ export function OfficialPackages({ lang, siteConfig }: { lang: Language; siteCon
         <div className="mb-12 grid gap-7 lg:grid-cols-[1fr_.7fr] lg:items-end">
           <div>
             <p className="pirate-chart-eyebrow"><ShipWheel className="h-4 w-4" />{lang === 'en' ? "The Captain's Route Collection" : 'La Colección de Rutas del Capitán'}</p>
-            <h2 className="pirate-chart-title mt-4 max-w-3xl font-heading text-4xl font-bold leading-tight sm:text-5xl">{lang === 'en' ? 'One island. Seven unforgettable ways to explore it.' : 'Una isla. Siete formas inolvidables de descubrirla.'}</h2>
+            <h2 className="pirate-chart-title mt-4 max-w-3xl font-heading text-4xl font-bold uppercase leading-tight sm:text-5xl">{lang === 'en' ? 'One island. Seven unforgettable ways to explore it.' : 'Una isla. Siete formas inolvidables de descubrirla.'}</h2>
           </div>
           <div className="pirate-chart-side lg:justify-self-end">
             <div className="home-adventure-seal" aria-label={lang === 'es' ? 'Sello oficial de canopy en Roatán' : 'Official Roatan canopy seal'}>
@@ -345,6 +368,16 @@ export function OfficialPackages({ lang, siteConfig }: { lang: Language; siteCon
                   <Link href="/reservar" className="pirate-package-link mt-7 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[.15em]">
                     {lang === 'en' ? 'Reserve this adventure' : 'Reservar esta aventura'}<ArrowUpRight className="h-4 w-4" />
                   </Link>
+
+                  <div className={`pirate-package-media ${item.imageMode === 'contain' ? 'is-emblem' : ''}`}>
+                    <Image
+                      src={item.image}
+                      alt={pick(item.imageAlt, lang)}
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 28vw"
+                      className={item.imageMode === 'contain' ? 'object-contain' : 'object-cover'}
+                    />
+                  </div>
                 </div>
               </article>
             );
@@ -363,7 +396,16 @@ export function OfficialPackages({ lang, siteConfig }: { lang: Language; siteCon
               <Phone />
               <h4>{lang === 'en' ? 'Direct contact' : 'Contacto directo'}</h4>
               <div className="pirate-phone-list">
-                {CONTACT_PHONES.map(phone => <a key={phone.href} href={`tel:${phone.href}`}>{phone.display}</a>)}
+                {CONTACT_PHONES.map(phone => (
+                  <a key={phone.href} href={`https://wa.me/${phone.href}`} target="_blank" rel="noreferrer">
+                    <span>{phone[lang]}</span>
+                    {phone.display}
+                  </a>
+                ))}
+                <a href={`mailto:${PAYPAL_EMAIL}`}>
+                  <span>PayPal</span>
+                  {PAYPAL_EMAIL}
+                </a>
               </div>
             </article>
 
@@ -382,44 +424,41 @@ export function OfficialPackages({ lang, siteConfig }: { lang: Language; siteCon
               <h4>{lang === 'en' ? 'Payment methods' : 'Métodos de pago'}</h4>
               <ul>
                 <li>{lang === 'en' ? 'Cash' : 'Efectivo'}</li>
-                <li>{lang === 'en' ? 'Credit card — pending final confirmation' : 'Tarjeta de crédito — pendiente de confirmación final'}</li>
-                <li>PayPal: paypal@roatanpiratescanopy</li>
+                <li>PayPal: {PAYPAL_EMAIL}</li>
+                <li>
+                  WhatsApp:{' '}
+                  <a href="https://wa.me/50433877652" target="_blank" rel="noreferrer">+504 3387-7652</a>
+                  {' · '}
+                  <a href="https://wa.me/50494979106" target="_blank" rel="noreferrer">+504 9497-9106</a>
+                </li>
               </ul>
-              <p>{lang === 'en' ? 'A 19% processing fee applies when paying by credit card.' : 'Se aplica un cargo de procesamiento del 19% al pagar con tarjeta.'}</p>
             </article>
 
             <article>
               <Hotel />
               <h4>{lang === 'en' ? 'Staying locally?' : '¿Te hospedas en la isla?'}</h4>
-              <p>{lang === 'en' ? 'Hotel and local guests are best served during non-cruise hours, between 11:00 AM and 2:00 PM.' : 'Para huéspedes de hotel o residentes, el mejor horario fuera de cruceros es entre 11:00 AM y 2:00 PM.'}</p>
-              <ul>
-                <li>{lang === 'en' ? 'Round-trip hotel transportation is available.' : 'Hay transporte ida y vuelta desde el hotel.'}</li>
-                <li>{lang === 'en' ? 'Tell us your arrival time if you have your own transportation.' : 'Indícanos tu hora de llegada si cuentas con transporte propio.'}</li>
-                <li>{lang === 'en' ? 'If you already have a driver, tell them your reservation is confirmed.' : 'Si ya tienes conductor, infórmale que tu reservación está confirmada.'}</li>
-              </ul>
+              <div className="pirate-phone-list">
+                {LOCAL_PHONES.map(phone => (
+                  <a key={phone.href} href={`https://wa.me/${phone.href}`} target="_blank" rel="noreferrer">
+                    <span>WhatsApp</span>
+                    {phone.display}
+                  </a>
+                ))}
+              </div>
             </article>
           </div>
 
           <div className="pirate-guarantee-grid">
             <div>
-              <ShieldCheck />
-              <h4>{lang === 'en' ? 'Why book directly with us?' : '¿Por qué reservar directamente?'}</h4>
-              <ul>
-                <li>{lang === 'en' ? 'No Port, No Pay' : 'Sin puerto, no pagas'}</li>
-                <li>{lang === 'en' ? 'No hidden fees' : 'Sin cargos ocultos'}</li>
-                <li>{lang === 'en' ? 'Deposit payment only' : 'Solo pago de depósito'}</li>
-                <li>{lang === 'en' ? 'Money-back guarantee' : 'Garantía de devolución'}</li>
-                <li>{lang === 'en' ? 'Secure payments and flexible cancellation' : 'Pagos seguros y cancelación flexible'}</li>
-              </ul>
-            </div>
-            <div>
               <CreditCard />
-              <h4>{lang === 'en' ? 'Money-back policy' : 'Política de devolución'}</h4>
+              <h4>{lang === 'en' ? 'Our refund policy' : 'Nuestra política de reembolso'}</h4>
               <ul>
-                <li>{lang === 'en' ? 'No Port, No Pay.' : 'Sin puerto, no pagas.'}</li>
-                <li>{lang === 'en' ? 'Cancel at least 24 hours in advance.' : 'Cancela con al menos 24 horas de anticipación.'}</li>
-                <li>{lang === 'en' ? 'Refund if we must cancel the tour.' : 'Reembolso si nosotros debemos cancelar el tour.'}</li>
-                <li>{lang === 'en' ? 'Deposits are forfeited for no-shows.' : 'El depósito se pierde en caso de no presentarse.'}</li>
+                <li>{lang === 'en' ? 'If your ship does not make port at either cruise port on the island, you will receive a 100% refund.' : 'Si tu barco no llega a ninguno de los puertos de cruceros de la isla, recibirás un reembolso del 100%.'}</li>
+                <li>{lang === 'en' ? 'Thunderstorms are rare and, 90% of the time, last only 15–20 minutes before the sunshine returns.' : 'Las tormentas eléctricas son poco frecuentes y, el 90% de las veces, duran solamente entre 15 y 20 minutos antes de que regrese el sol.'}</li>
+                <li>{lang === 'en' ? `A $20 per-person deposit is required to reserve transportation. Send it through PayPal to ${PAYPAL_EMAIL}.` : `Se requiere un depósito de $20 por persona para reservar el transporte. Envíalo por PayPal a ${PAYPAL_EMAIL}.`}</li>
+                <li>{lang === 'en' ? 'The remaining balance is due upon arrival.' : 'El saldo restante se paga al llegar.'}</li>
+                <li>{lang === 'en' ? 'Cancellations must be made at least 24 hours before pickup.' : 'Las cancelaciones deben realizarse al menos 24 horas antes de la recogida.'}</li>
+                <li>{lang === 'en' ? 'Pickup instructions will be sent after the reservation deposit is confirmed.' : 'Las instrucciones de recogida se enviarán cuando se confirme el depósito de la reservación.'}</li>
               </ul>
             </div>
           </div>
