@@ -1,19 +1,13 @@
 'use client';
 
 import React, { useState } from 'react';
-import Link from 'next/link';
 import Image from 'next/image';
-import { Phone, Mail, MessageCircle, X } from 'lucide-react';
+import { X } from 'lucide-react';
 import { Language, SiteConfig } from '@/lib/types';
 import { translations } from '@/lib/translations';
 
 const FACEBOOK_URL = 'https://www.facebook.com/share/19Qi2zh2Pv/?mibextid=wwXIfr';
 const INSTAGRAM_URL = 'https://www.instagram.com/pirateszipline_roatan?stkn=a29xMTV2YWlxYng0&utm_source=qr';
-const CONTACT_PHONES = [
-  { display: '+504 3387-7652', href: '+50433877652' },
-  { display: '+504 9990-4937', href: '+50499904937' },
-  { display: '+504 9992-2033', href: '+50499922033' },
-];
 
 function FacebookIcon() {
   return <svg viewBox="0 0 24 24" aria-hidden="true" className="h-4 w-4 fill-current"><path d="M13.7 22v-9h3l.45-3.5H13.7V7.27c0-1.01.28-1.7 1.73-1.7h1.85V2.44a24.8 24.8 0 0 0-2.7-.14c-2.67 0-4.5 1.63-4.5 4.62V9.5H7v3.5h3.08v9h3.62Z" /></svg>;
@@ -54,8 +48,8 @@ export function Footer({ lang, siteConfig }: FooterProps) {
     setModalPolicy({
       title: lang === 'es' ? 'Política de Cancelación' : 'Cancellation & Refund Policy',
       content: lang === 'es'
-        ? 'Para reservas individuales o familiares, las cancelaciones recibidas con 24 horas de antelación son elegibles para reprogramación o reembolso completo. Para pasajeros de cruceros: si su barco no atraca en Roatán debido a mal tiempo o cambios de itinerario del capitán, su reservación se cancela sin penalidad ni costo alguno.'
-        : 'For individual and family bookings, cancellations made at least 24 hours prior to tour time are eligible for full re-scheduling or 100% refund. For cruise ship passengers: if your cruise ship misses Roatán or itinerary cancels port call due to weather or maritime conditions, your reservation is cancelled with zero penalty.'
+        ? 'Si tu barco no llega a ninguno de los puertos de cruceros de la isla, recibirás un reembolso del 100%. Las tormentas eléctricas son poco frecuentes y, el 90% de las veces, duran solamente entre 15 y 20 minutos antes de que regrese el sol. Se requiere un depósito de $20 por persona para reservar el transporte mediante PayPal a paypal@roatanpiratescanopy.com. El saldo restante se paga al llegar. Las cancelaciones deben realizarse al menos 24 horas antes de la recogida. Las instrucciones de recogida se enviarán después de confirmar el depósito.'
+        : 'If your ship does not make port at either cruise port on the island, you will receive a 100% refund. Thunderstorms are rare and, 90% of the time, last only 15–20 minutes before the sunshine returns. A $20 per-person deposit is required to reserve transportation through PayPal at paypal@roatanpiratescanopy.com. The remaining balance is due upon arrival. Cancellations must be made at least 24 hours before pickup. Pickup instructions will be sent after the deposit is confirmed.'
     });
   };
 
@@ -65,10 +59,9 @@ export function Footer({ lang, siteConfig }: FooterProps) {
       <div className="absolute inset-0 pointer-events-none bg-nautical-grid opacity-20" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
-          {/* Column 1: Brand & Slogan */}
+        <div className="mx-auto mb-12 max-w-xl text-center">
           <div className="space-y-4">
-            <div className="flex items-center gap-3">
+            <div className="flex items-center justify-center gap-3">
               <div className="relative h-20 w-20 shrink-0">
                 <Image src="/brand/pirates-logo.png" alt="Pirates of the Caribbean Zipline & Canopy" fill sizes="80px" className="object-contain drop-shadow-xl" />
               </div>
@@ -86,7 +79,7 @@ export function Footer({ lang, siteConfig }: FooterProps) {
               &ldquo;{siteConfig.tagline[lang] || t.footer.slogan}&rdquo;
             </p>
 
-            <div className="pt-2 flex items-center gap-3" aria-label={lang === 'es' ? 'Redes sociales oficiales' : 'Official social media'}>
+            <div className="flex items-center justify-center gap-3 pt-2" aria-label={lang === 'es' ? 'Redes sociales oficiales' : 'Official social media'}>
               <a
                 href={FACEBOOK_URL}
                 target="_blank"
@@ -117,85 +110,11 @@ export function Footer({ lang, siteConfig }: FooterProps) {
               </a>
             </div>
           </div>
-
-          {/* Column 2: Quick Links */}
-          <div>
-            <h4 className="font-heading text-base font-bold text-white uppercase tracking-wider mb-4 border-b border-gray-800 pb-2">
-              {t.footer.quickLinks}
-            </h4>
-            <ul className="space-y-2 text-xs sm:text-sm">
-              <li>
-                <Link href="/" className="hover:text-[#d4af37] transition-colors">
-                  {t.nav.home}
-                </Link>
-              </li>
-              <li>
-                <Link href="/contacto" className="hover:text-[#d4af37] transition-colors">
-                  {t.nav.contact}
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Column 3: Hours & Cruise Notice */}
-          <div>
-            <h4 className="font-heading text-base font-bold text-white uppercase tracking-wider mb-4 border-b border-gray-800 pb-2">
-              {t.footer.schedule}
-            </h4>
-            <p className="text-xs sm:text-sm text-gray-300 leading-relaxed mb-3">
-              {siteConfig.openingHours[lang]}
-            </p>
-            <div className="p-3 bg-[#111923] border border-gray-800 rounded-xl">
-              <span className="text-xs font-bold text-[#ffd778] block mb-1">
-                {lang === 'es' ? 'Atención a Cruceros' : 'Cruise Ship Port Guests'}
-              </span>
-              <p className="text-[11px] text-gray-400">
-                {siteConfig.cruisePortNotes[lang]}
-              </p>
-            </div>
-          </div>
-
-          {/* Column 4: Direct Contact & Admin Access */}
-          <div>
-            <h4 className="font-heading text-base font-bold text-white uppercase tracking-wider mb-4 border-b border-gray-800 pb-2">
-              {t.footer.contact}
-            </h4>
-            <ul className="space-y-2.5 text-xs sm:text-sm">
-              <li className="flex items-start gap-2">
-                <Phone className="mt-0.5 w-4 h-4 text-[#d4af37] shrink-0" />
-                <div className="flex flex-col gap-1">
-                  {CONTACT_PHONES.map(phone => (
-                    <a key={phone.href} href={`tel:${phone.href}`} className="hover:text-[#d4af37]">
-                      {phone.display}
-                    </a>
-                  ))}
-                </div>
-              </li>
-              <li className="flex items-center gap-2">
-                <MessageCircle className="w-4 h-4 text-emerald-400 shrink-0" />
-                <a
-                  href={`https://wa.me/${siteConfig.whatsapp.replace(/[^0-9]/g, '')}`}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="hover:text-emerald-400"
-                >
-                  WhatsApp: {siteConfig.whatsapp}
-                </a>
-              </li>
-              <li className="flex items-center gap-2">
-                <Mail className="w-4 h-4 text-[#d4af37] shrink-0" />
-                <a href={`mailto:${siteConfig.email}`} className="hover:text-[#d4af37] break-all">
-                  {siteConfig.email}
-                </a>
-              </li>
-            </ul>
-
-          </div>
         </div>
 
         {/* Bottom Legal & Rights */}
-        <div className="pt-8 border-t border-gray-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-500">
-          <div className="text-center sm:text-left">
+        <div className="flex flex-col items-center gap-4 border-t border-gray-800 pt-8 text-center text-xs text-gray-500">
+          <div>
             <div>© {new Date().getFullYear()} {siteConfig.companyName}. {t.footer.rights}</div>
             <a
               href="https://www.bwpsoftware.com/"
@@ -207,7 +126,7 @@ export function Footer({ lang, siteConfig }: FooterProps) {
             </a>
           </div>
 
-          <div className="flex flex-wrap items-center gap-4">
+          <div className="flex flex-wrap items-center justify-center gap-4">
             <button
               type="button"
               onClick={openPrivacy}
