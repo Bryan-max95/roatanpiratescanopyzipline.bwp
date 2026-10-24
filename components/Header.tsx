@@ -39,8 +39,8 @@ export function Header({
     { label: t.nav.experience, href: '/experiencia', visible: false },
     { label: t.nav.prices, href: '/precios', visible: false },
     { label: t.nav.location, href: '/ubicacion', visible: false },
-    { label: t.nav.gallery, href: '/galeria', visible: false },
-    { label: t.nav.contact, href: '/contacto', visible: true }
+    { label: t.nav.gallery, href: '/galeria', visible: true },
+    { label: t.nav.contact, href: '/contacto', visible: false }
   ];
 
   const visibleNavLinks = navLinks.filter((link) => link.visible);
