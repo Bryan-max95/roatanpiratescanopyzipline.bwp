@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { Ship, CheckCircle2 } from 'lucide-react';
+import { Ship, CheckCircle2, Star } from 'lucide-react';
 import { useAppStore } from '@/lib/store';
 import { Hero } from '@/components/Hero';
 import { OfficialPackages } from '@/components/OfficialPackages';
@@ -75,36 +75,31 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Direct Quick Booking Callout Section */}
+      {/* Tripadvisor Callout Section */}
       <section className="py-16 bg-gradient-to-b from-[#090e15] to-[#070b10] border-t border-[#c5a059]/20 text-center">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <span className="text-xs font-bold text-[#c5a059] uppercase tracking-widest block mb-2">
-            {lang === 'es' ? 'Tu Próxima Aventura Te Espera' : 'Your Next Adventure Awaits'}
+            {lang === 'es' ? 'Comparte tu experiencia' : 'Share your experience'}
           </span>
           <h2 className="font-heading text-3xl sm:text-4xl font-bold text-white mb-4">
             {lang === 'es'
-              ? '¿Listo para volar en el mejor canopy de Roatán?'
-              : 'Ready to fly Roatan’s finest canopy zipline?'}
+              ? 'Visítanos en Tripadvisor'
+              : 'Visit us on Tripadvisor'}
           </h2>
           <p className="text-base text-gray-300 max-w-2xl mx-auto mb-8">
             {lang === 'es'
-              ? 'Reserva ahora sin pago previo. Recibe confirmación instantánea por WhatsApp y asegura tu horario preferido.'
-              : 'Book now with zero advance deposit. Receive immediate WhatsApp confirmation and secure your preferred flight time.'}
+              ? 'Lee las opiniones de otros viajeros o comparte directamente tu experiencia con Pirates of the Caribbean Zipline en Roatán.'
+              : 'Read feedback from fellow travelers or share your experience with Pirates of the Caribbean Zipline in Roatan.'}
           </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link
-              href="/reservar"
-              className="btn-wine-red px-10 py-4 rounded-full text-base font-bold tracking-wide w-full sm:w-auto"
-            >
-              {lang === 'es' ? 'Reservar en Línea Ahora' : 'Book Online Now'}
-            </Link>
-            <Link
-              href="/precios"
-              className="btn-gold-outline px-8 py-4 rounded-full text-base font-semibold tracking-wide w-full sm:w-auto"
-            >
-              {lang === 'es' ? 'Consultar Tarifas' : 'Check Rates'}
-            </Link>
-          </div>
+          <a
+            href={siteConfig.tripadvisorUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-gold-outline inline-flex w-full items-center justify-center gap-2 rounded-full px-10 py-4 text-base font-bold tracking-wide sm:w-auto"
+          >
+            <Star className="h-5 w-5" />
+            {lang === 'es' ? 'Ir a Tripadvisor' : 'Visit Tripadvisor'}
+          </a>
         </div>
       </section>
     </div>
