@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { Phone, Mail, MessageCircle, MapPin, Clock, Send, CheckCircle2 } from 'lucide-react';
+import { MessageCircle, MapPin, Clock, Send, CheckCircle2 } from 'lucide-react';
 import { useAppStore } from '@/lib/store';
 import { PageHeader } from '@/components/PageHeader';
 import { FaqSection } from '@/components/FaqSection';
@@ -25,8 +25,20 @@ export default function ContactoPage() {
     setFormSubmitted(true);
   };
 
-  const cleanPhone = siteConfig.phone.replace(/[^0-9+]/g, '');
-  const cleanWhatsapp = siteConfig.whatsapp.replace(/[^0-9]/g, '');
+  const contactChannels = [
+    {
+      number: '+504 3387-7652',
+      whatsapp: '50433877652',
+      label: lang === 'es' ? 'Visitantes de crucero' : 'Coming on a Cruise Ship',
+      note: lang === 'es' ? 'Traslados y coordinación desde el puerto' : 'Port pickup and cruise-day coordination',
+    },
+    {
+      number: '+504 9497-9106',
+      whatsapp: '50494979106',
+      label: lang === 'es' ? 'Huéspedes de hotel o Airbnb' : 'Staying at a Hotel or Airbnb',
+      note: lang === 'es' ? 'Visitas desde hoteles y alojamientos locales' : 'Visits from hotels and local accommodations',
+    },
+  ];
 
   return (
     <div className="bg-[#070b10] min-h-screen">
@@ -73,74 +85,34 @@ export default function ContactoPage() {
 
               {/* Contact Channels Cards */}
               <div className="space-y-4">
-                {/* WhatsApp */}
-                <a
-                  href={`https://wa.me/${cleanWhatsapp}?text=${encodeURIComponent(
-                    lang === 'es'
-                      ? 'Hola Pirates Zipline, deseo información sobre sus tours en Roatán.'
-                      : 'Hello Pirates Zipline, I would like more information about your canopy tours in Roatan.'
-                  )}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-start gap-4 p-4 rounded-2xl bg-[#111923] border border-[#c5a059]/30 hover:border-[#ffd778] transition-all group"
-                >
-                  <div className="w-10 h-10 rounded-full bg-emerald-950/60 border border-emerald-500/40 flex items-center justify-center text-emerald-400 shrink-0">
-                    <MessageCircle className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <span className="text-xs font-semibold text-gray-400 uppercase tracking-wider block">
-                      WhatsApp Oficial
-                    </span>
-                    <span className="text-base font-bold text-white group-hover:text-[#ffd778] transition-colors">
-                      {siteConfig.whatsapp}
-                    </span>
-                    <span className="text-xs text-emerald-400 block mt-0.5">
-                      {lang === 'es' ? 'Respuesta inmediata' : 'Fast immediate response'}
-                    </span>
-                  </div>
-                </a>
-
-                {/* Telephone */}
-                <a
-                  href={`tel:${cleanPhone}`}
-                  className="flex items-start gap-4 p-4 rounded-2xl bg-[#111923] border border-[#c5a059]/30 hover:border-[#ffd778] transition-all group"
-                >
-                  <div className="w-10 h-10 rounded-full bg-[#162230] border border-[#c5a059]/40 flex items-center justify-center text-[#ffd778] shrink-0">
-                    <Phone className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <span className="text-xs font-semibold text-gray-400 uppercase tracking-wider block">
-                      {lang === 'es' ? 'Línea Telefónica Directa' : 'Direct Phone Line'}
-                    </span>
-                    <span className="text-base font-bold text-white group-hover:text-[#ffd778] transition-colors">
-                      {siteConfig.phone}
-                    </span>
-                    <span className="text-xs text-gray-400 block mt-0.5">
-                      {lang === 'es' ? 'Atención local e internacional' : 'Local & international assistance'}
-                    </span>
-                  </div>
-                </a>
-
-                {/* Email */}
-                <a
-                  href={`mailto:${siteConfig.email}`}
-                  className="flex items-start gap-4 p-4 rounded-2xl bg-[#111923] border border-[#c5a059]/30 hover:border-[#ffd778] transition-all group"
-                >
-                  <div className="w-10 h-10 rounded-full bg-[#162230] border border-[#c5a059]/40 flex items-center justify-center text-[#ffd778] shrink-0">
-                    <Mail className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <span className="text-xs font-semibold text-gray-400 uppercase tracking-wider block">
-                      {lang === 'es' ? 'Correo Electrónico' : 'Email Support'}
-                    </span>
-                    <span className="text-base font-bold text-white group-hover:text-[#ffd778] transition-colors break-all">
-                      {siteConfig.email}
-                    </span>
-                    <span className="text-xs text-gray-400 block mt-0.5">
-                      {lang === 'es' ? 'Cotizaciones y reservas grupales' : 'Group quotes & inquiries'}
-                    </span>
-                  </div>
-                </a>
+                {contactChannels.map(channel => (
+                  <a
+                    key={channel.whatsapp}
+                    href={`https://wa.me/${channel.whatsapp}?text=${encodeURIComponent(
+                      lang === 'es'
+                        ? 'Hola Pirates Zipline, deseo información sobre sus tours en Roatán.'
+                        : 'Hello Pirates Zipline, I would like more information about your tours in Roatan.'
+                    )}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-start gap-4 p-4 rounded-2xl bg-[#111923] border border-[#c5a059]/30 hover:border-[#ffd778] transition-all group"
+                  >
+                    <div className="w-10 h-10 rounded-full bg-emerald-950/60 border border-emerald-500/40 flex items-center justify-center text-emerald-400 shrink-0">
+                      <MessageCircle className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <span className="text-xs font-semibold text-gray-400 uppercase tracking-wider block">
+                        {channel.label}
+                      </span>
+                      <span className="text-base font-bold text-white group-hover:text-[#ffd778] transition-colors">
+                        {channel.number}
+                      </span>
+                      <span className="text-xs text-emerald-400 block mt-0.5">
+                        {channel.note}
+                      </span>
+                    </div>
+                  </a>
+                ))}
 
                 {/* Location */}
                 <div className="flex items-start gap-4 p-4 rounded-2xl bg-[#111923] border border-gray-800">
