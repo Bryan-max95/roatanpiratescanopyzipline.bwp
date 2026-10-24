@@ -20,7 +20,7 @@ export const initialSiteConfig: SiteConfig = {
   },
   phone: '+504 3387-7652',
   whatsapp: '+50433877652',
-  email: 'info@roatanpiratescanopy.com',
+  email: '',
   address: 'French Harbour, Main Island Highway',
   municipality: 'Roatán',
   department: 'Islas de la Bahía',
