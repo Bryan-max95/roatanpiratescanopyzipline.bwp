@@ -1,3 +1,4 @@
+
 'use client';
 
 import Image from 'next/image';
@@ -11,36 +12,37 @@ interface HeroProps {
 }
 
 export function Hero({ lang }: HeroProps) {
+  const businessName = 'Roatan Pirates of the Caribbean Xtreme Canopy Zipline';
+
   return (
     <section
       id="inicio"
-      aria-label={lang === 'es' ? 'Roatan Pirates of the Caribbean Xtreme Canopy Zipline' : 'Roatan Pirates of the Caribbean Xtreme Canopy Zipline'}
-      className="relative flex min-h-[78svh] items-center justify-center overflow-hidden bg-[#090e15] pb-10 pt-24 sm:min-h-[88vh] sm:pb-14 sm:pt-28 lg:min-h-[94vh]"
+      aria-label={businessName}
+      className="relative flex min-h-[76svh] items-center overflow-hidden bg-[#090e15] pb-8 pt-20 sm:min-h-[86vh] sm:pb-12 sm:pt-24 lg:min-h-[92vh]"
     >
       <div className="absolute inset-0 z-0 select-none">
         <Image
           src="/image/homeweb.jpeg"
-          alt="Guests enjoying the clear boat adventure in Roatan"
+          alt={lang === 'es' ? 'Aventura turística de Roatán, Honduras' : 'Roatan, Honduras adventure experience'}
           fill
           priority
           sizes="100vw"
           className="object-cover object-center"
           referrerPolicy="no-referrer"
         />
-        <div className="absolute inset-0 bg-[#04070a]/40" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#090e15] via-transparent to-[#090e15]/70" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_20%,rgba(4,7,10,.48)_100%)]" />
       </div>
 
-      <div className="relative z-10 mx-auto flex w-full max-w-[1600px] items-center justify-start px-4 sm:px-8 lg:px-14 xl:px-20">
-        <div className="relative aspect-[1774/887] w-[82vw] max-w-[360px] -translate-y-8 sm:w-[58vw] sm:max-w-[620px] sm:-translate-y-10 lg:w-[48vw] lg:max-w-[700px] lg:-translate-y-12 xl:w-[45vw] xl:max-w-[760px]">
+      <h1 className="sr-only">{businessName}</h1>
+
+      <div className="relative z-10 mx-auto flex w-full max-w-[1600px] items-center justify-start px-3 sm:px-7 lg:px-12 xl:px-16">
+        <div className="relative aspect-[1774/887] w-[91vw] max-w-[430px] -translate-y-7 sm:w-[66vw] sm:max-w-[700px] sm:-translate-y-9 lg:w-[54vw] lg:max-w-[840px] lg:-translate-y-11 xl:w-[50vw] xl:max-w-[920px]">
           <Image
             src="/brand/pirates-wordmark.png"
-            alt="Roatan Pirates of the Caribbean Xtreme Canopy Zipline"
+            alt={businessName}
             fill
             priority
-            sizes="(max-width: 640px) 96vw, (max-width: 1280px) 88vw, 1180px"
-            className="object-contain drop-shadow-[0_14px_20px_rgba(0,0,0,.78)]"
+            sizes="(max-width: 640px) 91vw, (max-width: 1024px) 66vw, (max-width: 1280px) 54vw, 920px"
+            className="object-contain"
           />
         </div>
       </div>
