@@ -10,7 +10,6 @@ import {
   ChevronDown,
   Clock3,
   CreditCard,
-  Hotel,
   Map,
   MapPinned,
   PawPrint,
@@ -36,6 +35,7 @@ type TourPackage = {
   image: string;
   imageAlt: LocalizedText;
   imageMode?: 'cover' | 'contain';
+  fixedPrice?: boolean;
   name: LocalizedText;
   summary: LocalizedText;
   features: LocalizedText[];
@@ -274,16 +274,47 @@ const packages: TourPackage[] = [
     bring: text('Sunscreen, camera, easily removable shoes, towels and swimwear.', 'Protector solar, cámara, zapatos fáciles de quitar, toallas y traje de baño.'),
     payment: text('Cash and PayPal are accepted. PayPal: paypal@roatanpiratescanopy.com.', 'Se aceptan efectivo y PayPal. PayPal: paypal@roatanpiratescanopy.com.'),
   },
+  {
+    icon: ShipWheel,
+    price: 130,
+    fixedPrice: true,
+    image: '/image/WhatsApp Image 2026-09-21 at 8.25.05 PM.jpeg',
+    imageAlt: text('Sloth at the sanctuary included in the Captain’s Special Package', 'Perezoso en el santuario incluido en el Paquete Especial del Capitán'),
+    name: text("Captain's Special Package", 'Paquete Especial del Capitán'),
+    summary: text(
+      'Enjoy a day full of extreme adventure: soar through the jungle on a zipline, visit the monkey and sloth sanctuary, then unwind on one of our beautiful private beaches.',
+      'Disfruta un día lleno de aventura extrema: recorre la selva en tirolesa, visita el santuario de monos y perezosos y relájate en una de nuestras hermosas playas privadas.'
+    ),
+    features: [
+      text('Zipline tour', 'Tour de tirolesa'),
+      text('Monkey & sloth sanctuary visit', 'Visita al santuario de monos y perezosos'),
+      text('Private beach access with entry fee and beach chairs included', 'Acceso a playa privada con entrada y sillas de playa incluidas'),
+    ],
+    sections: [
+      {
+        title: text('Your adventure, step by step', 'Tu aventura, paso a paso'),
+        items: [
+          text('Start with the zipline tour for an adrenaline-filled jungle adventure.', 'Comienza con el tour de tirolesa para vivir una aventura llena de adrenalina en la selva.'),
+          text('Continue with a visit to the monkey and sloth sanctuary.', 'Continúa con una visita al santuario de monos y perezosos.'),
+          text('Finish with time to relax on a private beach, with admission and a beach chair included.', 'Termina con tiempo para relajarte en una playa privada, con entrada y silla de playa incluidas.'),
+        ],
+      },
+      {
+        title: text('Package total', 'Total del paquete'),
+        items: [
+          text('$130 USD per person for all three activities, including the private beach entry fee and beach chairs.', '$130 USD por persona por las tres actividades, incluyendo la entrada a la playa privada y las sillas de playa.'),
+        ],
+      },
+    ],
+    duration: text('Confirm the total duration and activity schedule when booking.', 'Confirma la duración total y el horario de las actividades al reservar.'),
+    bring: text('Comfortable clothing, secure shoes for ziplining, swimwear, a towel, sunscreen, bug spray and a camera.', 'Ropa cómoda, zapatos seguros para la tirolesa, traje de baño, toalla, protector solar, repelente y cámara.'),
+    payment: text('Credit card and PayPal. PayPal: paypal@roatanpiratescanopy.com.', 'Tarjeta de crédito y PayPal. PayPal: paypal@roatanpiratescanopy.com.'),
+  },
 ];
 
 const CONTACT_PHONES = [
   { display: '+504 3387-7652', href: '50433877652', en: 'Coming on a cruise ship', es: 'Visitantes de crucero' },
   { display: '+504 9497-9106', href: '50494979106', en: 'Staying at a hotel or Airbnb', es: 'Huéspedes de hotel o Airbnb' },
-];
-
-const LOCAL_PHONES = [
-  { display: '+504 9497-9106', href: '50494979106' },
-  { display: '+504 9990-4937', href: '50499904937' },
 ];
 
 const PAYPAL_EMAIL = 'paypal@roatanpiratescanopy.com';
@@ -299,7 +330,7 @@ export function OfficialPackages({ lang, siteConfig }: { lang: Language; siteCon
         <div className="mb-12 grid gap-7 lg:grid-cols-[1fr_.7fr] lg:items-end">
           <div>
             <p className="pirate-chart-eyebrow"><ShipWheel className="h-4 w-4" />{lang === 'en' ? "The Captain's Route Collection" : 'La Colección de Rutas del Capitán'}</p>
-            <h2 className="pirate-chart-title mt-4 max-w-3xl font-heading text-4xl font-bold uppercase leading-tight sm:text-5xl">{lang === 'en' ? 'One island. Seven unforgettable ways to explore it.' : 'Una isla. Siete formas inolvidables de descubrirla.'}</h2>
+            <h2 className="pirate-chart-title mt-4 max-w-3xl font-heading text-4xl font-bold uppercase leading-tight sm:text-5xl">{lang === 'en' ? 'One island. Eight unforgettable ways to explore it.' : 'Una isla. Ocho formas inolvidables de descubrirla.'}</h2>
           </div>
           <div className="pirate-chart-side lg:justify-self-end">
             <div className="home-adventure-seal" aria-label={lang === 'es' ? 'Sello oficial de canopy en Roatán' : 'Official Roatan canopy seal'}>
@@ -322,7 +353,7 @@ export function OfficialPackages({ lang, siteConfig }: { lang: Language; siteCon
                   <div className="mb-7 flex items-start justify-between gap-5">
                     <span className="pirate-package-icon"><Icon className="h-6 w-6" /></span>
                     <div className="pirate-package-price text-right">
-                      <span className="block text-[10px] font-bold uppercase tracking-[.2em]">{lang === 'en' ? 'Adventure from' : 'Aventura desde'}</span>
+                      <span className="block text-[10px] font-bold uppercase tracking-[.2em]">{item.fixedPrice ? (lang === 'en' ? 'Package total' : 'Total del paquete') : (lang === 'en' ? 'Adventure from' : 'Aventura desde')}</span>
                       <strong className="font-heading text-3xl">${item.price}</strong>
                       <span className="ml-1 text-xs">/ {lang === 'en' ? 'person' : 'persona'}</span>
                     </div>
@@ -402,10 +433,6 @@ export function OfficialPackages({ lang, siteConfig }: { lang: Language; siteCon
                     {phone.display}
                   </a>
                 ))}
-                <a href={`mailto:${PAYPAL_EMAIL}`}>
-                  <span>PayPal</span>
-                  {PAYPAL_EMAIL}
-                </a>
               </div>
             </article>
 
@@ -423,29 +450,11 @@ export function OfficialPackages({ lang, siteConfig }: { lang: Language; siteCon
               <WalletCards />
               <h4>{lang === 'en' ? 'Payment methods' : 'Métodos de pago'}</h4>
               <ul>
-                <li>{lang === 'en' ? 'Cash' : 'Efectivo'}</li>
+                <li>{lang === 'en' ? 'Credit card' : 'Tarjeta de crédito'}</li>
                 <li>PayPal: {PAYPAL_EMAIL}</li>
-                <li>
-                  WhatsApp:{' '}
-                  <a href="https://wa.me/50433877652" target="_blank" rel="noreferrer">+504 3387-7652</a>
-                  {' · '}
-                  <a href="https://wa.me/50494979106" target="_blank" rel="noreferrer">+504 9497-9106</a>
-                </li>
               </ul>
             </article>
 
-            <article>
-              <Hotel />
-              <h4>{lang === 'en' ? 'Staying locally?' : '¿Te hospedas en la isla?'}</h4>
-              <div className="pirate-phone-list">
-                {LOCAL_PHONES.map(phone => (
-                  <a key={phone.href} href={`https://wa.me/${phone.href}`} target="_blank" rel="noreferrer">
-                    <span>WhatsApp</span>
-                    {phone.display}
-                  </a>
-                ))}
-              </div>
-            </article>
           </div>
 
           <div className="pirate-guarantee-grid">
