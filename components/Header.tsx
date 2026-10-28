@@ -1,3 +1,4 @@
+
 'use client';
 
 import React, { useState, useEffect } from 'react';
@@ -30,7 +31,8 @@ export function Header({
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 30);
     };
-    window.addEventListener('scroll', handleScroll);
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -55,10 +57,10 @@ export function Header({
   return (
     <header
       id="main-header"
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 border-b py-3.5 transition-colors duration-300 ${
         isScrolled
-          ? 'bg-[#090e15]/95 backdrop-blur-md shadow-xl border-b border-[#c5a059]/25 py-2.5'
-          : 'bg-gradient-to-b from-[#090e15]/95 via-[#090e15]/80 to-transparent py-3.5'
+          ? 'bg-black/65 backdrop-blur-md shadow-xl border-[#c5a059]/25'
+          : 'bg-black border-transparent'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -173,7 +175,7 @@ export function Header({
       {mobileMenuOpen && (
         <div
           id="mobile-nav-drawer"
-          className="lg:hidden bg-[#0a0f16]/98 border-b border-[#c5a059]/40 px-6 py-6 shadow-2xl backdrop-blur-xl animate-in slide-in-from-top duration-200"
+          className="lg:hidden bg-black border-b border-[#c5a059]/40 px-6 py-6 shadow-2xl animate-in slide-in-from-top duration-200"
         >
           <nav className="flex flex-col space-y-4 text-center">
             {visibleNavLinks.map((link) => {
