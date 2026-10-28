@@ -1386,7 +1386,7 @@ body::before {
 .pirate-visitor-heading p { color: #7b3829; font-size: .7rem; font-weight: 900; letter-spacing: .18em; text-transform: uppercase; }
 .pirate-visitor-heading h3 { max-width: 45rem; margin-top: .55rem; color: #302116; font-family: var(--font-serif-pirate); font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 800; line-height: 1.13; }
 .pirate-visitor-heading span { display: block; margin-top: .65rem; color: #6a5540; font-size: .78rem; letter-spacing: .07em; text-transform: uppercase; }
-.pirate-info-grid { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); }
+.pirate-info-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); }
 .pirate-info-grid > article { min-width: 0; padding: 1.6rem; border-right: 1px solid rgba(74,46,23,.18); }
 .pirate-info-grid > article:last-child { border-right: 0; }
 .pirate-info-grid > article > svg { width: 1.45rem; height: 1.45rem; color: #7a3828; }
