@@ -427,6 +427,10 @@ export function OfficialPackages({ lang, siteConfig }: { lang: Language; siteCon
               <Phone />
               <h4>{lang === 'en' ? 'Direct contact' : 'Contacto directo'}</h4>
               <div className="pirate-phone-list">
+                 <a href="mailto:piratescanopyziplineroatan@gmail.com" className="break-words">
+                  <span>{lang === 'en' ? 'Email' : 'Correo electrónico'}</span>
+                  piratescanopyziplineroatan@gmail.com
+                </a>
                 {CONTACT_PHONES.map(phone => (
                   <a key={phone.href} href={`https://wa.me/${phone.href}`} target="_blank" rel="noreferrer">
                     <span>{phone[lang]}</span>
