@@ -34,7 +34,7 @@ type TourPackage = {
   price: number;
   image: string;
   imageAlt: LocalizedText;
-  imageMode?: 'cover' | 'contain';
+  imageMode?: 'cover' | 'contain' | 'emblem';
   fixedPrice?: boolean;
   name: LocalizedText;
   summary: LocalizedText;
@@ -53,7 +53,7 @@ const packages: TourPackage[] = [
     price: 65,
     image: '/brand/pirates-logo.png',
     imageAlt: text('Official Pirates of the Caribbean Zipline emblem', 'Emblema oficial de Pirates of the Caribbean Zipline'),
-    imageMode: 'contain',
+    imageMode: 'emblem',
     name: text('Pirates Zipline Tour', 'Tour de Tirolesa Pirates'),
     summary: text(
       "One of Roatan's signature adventures: high-speed adrenaline, panoramic jungle views and professional guides who handle the technical details for you.",
@@ -310,6 +310,43 @@ const packages: TourPackage[] = [
     bring: text('Comfortable clothing, secure shoes for ziplining, swimwear, a towel, sunscreen, bug spray and a camera.', 'Ropa cómoda, zapatos seguros para la tirolesa, traje de baño, toalla, protector solar, repelente y cámara.'),
     payment: text('Credit card and PayPal. PayPal: paypal@roatanpiratescanopy.com.', 'Tarjeta de crédito y PayPal. PayPal: paypal@roatanpiratescanopy.com.'),
   },
+  {
+    icon: Waves,
+    price: 65,
+    fixedPrice: true,
+    image: '/image/caballofoto.jpeg',
+    imageMode: 'contain',
+    imageAlt: text('Visitor embracing a horse', 'Visitante abrazando a un caballo'),
+    name: text('Horseback Riding', 'Paseo a Caballo por la Playa'),
+    summary: text(
+      'Discover the beauty of Roatan on horseback along the beach. Enjoy the sea breeze, turquoise Caribbean waters and coastal scenery for a memorable island experience.',
+      'Descubre la belleza de Roatán en un paseo a caballo por la playa. Disfruta la brisa del mar, las aguas turquesas del Caribe y el paisaje costero en una experiencia inolvidable en la isla.'
+    ),
+    features: [
+      text('Horseback ride along the beach', 'Paseo a caballo por la playa'),
+      text('Caribbean ocean views', 'Vistas al mar Caribe'),
+      text('A relaxing way to explore the coast', 'Una forma relajante de descubrir la costa'),
+    ],
+    sections: [
+      {
+        title: text('Your beach riding experience', 'Tu experiencia a caballo por la playa'),
+        items: [
+          text('Explore the shoreline on horseback and enjoy the tropical coastal scenery.', 'Recorre la orilla a caballo y disfruta el paisaje tropical de la costa.'),
+          text('Take in the sea breeze and views of the Caribbean as you ride along the beach.', 'Disfruta la brisa marina y las vistas del Caribe mientras paseas por la playa.'),
+        ],
+      },
+      {
+        title: text('Before your visit', 'Antes de tu visita'),
+        items: [
+          text('The horseback riding package is $65 USD per person.', 'El paquete de paseo a caballo cuesta $65 USD por persona.'),
+          text('Confirm the meeting point, departure time and riding requirements when booking.', 'Confirma el punto de encuentro, la hora de salida y los requisitos para montar al reservar.'),
+        ],
+      },
+    ],
+    duration: text('Confirm the ride duration and schedule when booking.', 'Confirma la duración del paseo y el horario al reservar.'),
+    bring: text('Comfortable clothing, long pants, closed-toe shoes, sunscreen, drinking water and a camera.', 'Ropa cómoda, pantalón largo, zapatos cerrados, protector solar, agua y cámara.'),
+    payment: text('Credit card and PayPal. PayPal: paypal@roatanpiratescanopy.com.', 'Tarjeta de crédito y PayPal. PayPal: paypal@roatanpiratescanopy.com.'),
+  },
 ];
 
 const CONTACT_PHONES = [
@@ -330,7 +367,7 @@ export function OfficialPackages({ lang, siteConfig }: { lang: Language; siteCon
         <div className="mb-12 grid gap-7 lg:grid-cols-[1fr_.7fr] lg:items-end">
           <div>
             <p className="pirate-chart-eyebrow"><ShipWheel className="h-4 w-4" />{lang === 'en' ? "The Captain's Route Collection" : 'La Colección de Rutas del Capitán'}</p>
-            <h2 className="pirate-chart-title mt-4 max-w-3xl font-heading text-4xl font-bold uppercase leading-tight sm:text-5xl">{lang === 'en' ? 'One island. Eight unforgettable ways to explore it.' : 'Una isla. Ocho formas inolvidables de descubrirla.'}</h2>
+            <h2 className="pirate-chart-title mt-4 max-w-3xl font-heading text-4xl font-bold uppercase leading-tight sm:text-5xl">{lang === 'en' ? 'One island. Nine unforgettable ways to explore it.' : 'Una isla. Nueve formas inolvidables de descubrirla.'}</h2>
           </div>
           <div className="pirate-chart-side lg:justify-self-end">
             <div className="home-adventure-seal" aria-label={lang === 'es' ? 'Sello oficial de canopy en Roatán' : 'Official Roatan canopy seal'}>
@@ -400,13 +437,13 @@ export function OfficialPackages({ lang, siteConfig }: { lang: Language; siteCon
                     {lang === 'en' ? 'Reserve this adventure' : 'Reservar esta aventura'}<ArrowUpRight className="h-4 w-4" />
                   </Link>
 
-                  <div className={`pirate-package-media ${item.imageMode === 'contain' ? 'is-emblem' : ''}`}>
+                  <div className={`pirate-package-media ${item.imageMode === 'emblem' ? 'is-emblem' : item.imageMode === 'contain' ? 'is-contained' : ''}`}>
                     <Image
                       src={item.image}
                       alt={pick(item.imageAlt, lang)}
                       fill
                       sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 28vw"
-                      className={item.imageMode === 'contain' ? 'object-contain' : 'object-cover'}
+                      className={item.imageMode === 'contain' || item.imageMode === 'emblem' ? 'object-contain' : 'object-cover'}
                     />
                   </div>
                 </div>
@@ -427,7 +464,7 @@ export function OfficialPackages({ lang, siteConfig }: { lang: Language; siteCon
               <Phone />
               <h4>{lang === 'en' ? 'Direct contact' : 'Contacto directo'}</h4>
               <div className="pirate-phone-list">
-                 <a href="mailto:piratescanopyziplineroatan@gmail.com" className="break-words">
+                <a href="mailto:piratescanopyziplineroatan@gmail.com" className="break-words">
                   <span>{lang === 'en' ? 'Email' : 'Correo electrónico'}</span>
                   piratescanopyziplineroatan@gmail.com
                 </a>
